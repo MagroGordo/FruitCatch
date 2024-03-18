@@ -11,14 +11,13 @@ public class FruitSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> fruits = new List<GameObject>();
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
-    [Header("Attributes")]
-    [SerializeField] private float spawnSpeed = 1f;
+    private float spawnSpeed;
     
     public int totalSpawned = 0;
 
     private void Start()
     {
-        spawnSpeed = 5f;
+        spawnSpeed = 3f;
         StartCoroutine(SpawnFruit());
     }
 
@@ -32,9 +31,9 @@ public class FruitSpawner : MonoBehaviour
             Instantiate(fruit, spawnPoint.position, spawnPoint.rotation);
             totalSpawned++;
 
-            if (totalSpawned % 15 == 0)
+            if (totalSpawned % 10 == 0)
             {
-                spawnSpeed -= 0.2f;
+                spawnSpeed -= 0.5f;
 
                 if(spawnSpeed < 0.5f)
                 {

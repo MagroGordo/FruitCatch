@@ -43,7 +43,7 @@ public class CurtainTransition : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
-    private void Exit()
+    public void Exit()
     {
         StartCoroutine(ExitGame());
     }

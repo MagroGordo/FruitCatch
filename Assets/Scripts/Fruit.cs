@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    public float fruitFallSpeed = 0.02f;
+    private float fruitFallSpeed = 0.1f;
 
     private Hernando hernando;
     private FruitSpawner spawner;
@@ -13,14 +13,6 @@ public class Fruit : MonoBehaviour
     {
         hernando = FindObjectOfType<Hernando>();
         spawner = FindObjectOfType<FruitSpawner>();
-    }
-
-    private void Update()
-    {
-        if (spawner.totalSpawned % 15 != 0)
-            return;
-        else
-            fruitFallSpeed += 0.02f;
     }
 
     void FixedUpdate()
@@ -72,37 +64,80 @@ public class Fruit : MonoBehaviour
         {
             Destroy(this.gameObject);
 
-            if (CompareTag("Lemon"))
+            if (hernando.oinky)
             {
-                hernando.lemonCount--;
+                float r = Random.Range(0, 2f);
+
+                if (r == 0.6f)
+                {
+                    if (CompareTag("Lemon"))
+                    {
+                        hernando.lemonCount++;
+                    }
+                    if (CompareTag("Strawberry"))
+                    {
+                        hernando.strawberryCount++;
+                    }
+                    if (CompareTag("Melon"))
+                    {
+                        hernando.melonCount++;
+                    }
+                    if (CompareTag("Watermelon"))
+                    {
+                        hernando.watermelonCount++;
+                    }
+                    if (CompareTag("Pineapple"))
+                    {
+                        hernando.pineappleCount++;
+                    }
+                    if (CompareTag("Kiwi"))
+                    {
+                        hernando.kiwiCount++;
+                    }
+                    if (CompareTag("Banana"))
+                    {
+                        hernando.bananaCount++;
+                    }
+                    if (CompareTag("Orange"))
+                    {
+                        hernando.orangeCount++;
+                    }
+                }
             }
-            if (CompareTag("Strawberry"))
+            else
             {
-                hernando.strawberryCount--;
-            }
-            if (CompareTag("Melon"))
-            {
-                hernando.melonCount--;
-            }
-            if (CompareTag("Watermelon"))
-            {
-                hernando.watermelonCount--;
-            }
-            if (CompareTag("Pineapple"))
-            {
-                hernando.pineappleCount--;
-            }
-            if (CompareTag("Kiwi"))
-            {
-                hernando.kiwiCount--;
-            }
-            if (CompareTag("Banana"))
-            {
-                hernando.bananaCount--;
-            }
-            if (CompareTag("Orange"))
-            {
-                hernando.orangeCount--;
+                if (CompareTag("Lemon"))
+                {
+                    hernando.lemonCount--;
+                }
+                if (CompareTag("Strawberry"))
+                {
+                    hernando.strawberryCount--;
+                }
+                if (CompareTag("Melon"))
+                {
+                    hernando.melonCount--;
+                }
+                if (CompareTag("Watermelon"))
+                {
+                    hernando.watermelonCount--;
+                }
+                if (CompareTag("Pineapple"))
+                {
+                    hernando.pineappleCount--;
+                }
+                if (CompareTag("Kiwi"))
+                {
+                    hernando.kiwiCount--;
+                }
+                if (CompareTag("Banana"))
+                {
+                    hernando.bananaCount--;
+                }
+                if (CompareTag("Orange"))
+                {
+                    hernando.orangeCount--;
+                }
             }
         }
     }
