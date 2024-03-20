@@ -8,11 +8,13 @@ public class Fruit : MonoBehaviour
 
     private Hernando hernando;
     private FruitSpawner spawner;
+    private UpgradeManager upgrade_;
 
     private void Awake()
     {
         hernando = FindObjectOfType<Hernando>();
         spawner = FindObjectOfType<FruitSpawner>();
+        upgrade_ = FindObjectOfType<UpgradeManager>();
     }
 
     void FixedUpdate()
@@ -64,7 +66,7 @@ public class Fruit : MonoBehaviour
         {
             Destroy(this.gameObject);
 
-            if (hernando.oinky)
+            if (upgrade_.upgradePurchased[1])
             {
                 float r = Random.Range(0, 2f);
 

@@ -8,7 +8,7 @@ public class HernandoMovement : MonoBehaviour
 
     private Animator anim_;
     private Rigidbody2D rb;
-    private Hernando hernando;
+    private UpgradeManager upgrade_;
 
     private float mx;
 
@@ -16,14 +16,14 @@ public class HernandoMovement : MonoBehaviour
     {
         anim_ = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        hernando = GetComponent<Hernando>();
+        upgrade_ = FindObjectOfType<UpgradeManager>();
     }
 
     private void Update()
     {
         mx = Input.GetAxisRaw("Horizontal");
 
-        if (hernando.jordans)
+        if (upgrade_.upgradePurchased[0])
         {
             speed = 8f;
         }

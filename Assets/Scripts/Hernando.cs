@@ -12,7 +12,4 @@ public class Hernando : MonoBehaviour
     public int melonCount = 0;
     public int kiwiCount = 0;
     public int pineappleCount = 0;
-
-    public bool oinky;
-    public bool jordans;
 }

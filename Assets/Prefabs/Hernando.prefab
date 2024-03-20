@@ -172,14 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbf50c0eb7021c43aa4da5336cca1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lemonCount: 0
-  bananaCount: 0
-  orangeCount: 0
-  strawberryCount: 0
-  watermelonCount: 0
-  melonCount: 0
-  kiwiCount: 0
-  pineappleCount: 0
+  lemonCount: 100
+  bananaCount: 100
+  orangeCount: 100
+  strawberryCount: 100
+  watermelonCount: 100
+  melonCount: 100
+  kiwiCount: 100
+  pineappleCount: 100
+  oinky: {fileID: 0}
+  jordans: {fileID: 0}
 --- !u!114 &1869570310304335860
 MonoBehaviour:
   m_ObjectHideFlags: 0
