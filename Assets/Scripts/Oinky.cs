@@ -10,19 +10,10 @@ public class Oinky : MonoBehaviour
     [SerializeField] private GameObject oinky;
 
     private int updateIndex = 1;
+    private int requiredFruits = 300;
 
     public void PurchaseUpgrade()
     {
-        if (hernando.orangeCount >= 50 &&
-            hernando.bananaCount >= 50 &&
-            hernando.watermelonCount >= 50)
-        {
-            oinky.SetActive(false);
-            upgrade_.PurchaseUpgrade(updateIndex);
-        }
-        else
-        {
-            Debug.Log("Not enough fruits");
-        }
+        upgrade_.PurchaseUpgrade(updateIndex, requiredFruits);
     }
 }

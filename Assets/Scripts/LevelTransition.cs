@@ -16,36 +16,22 @@ public class CurtainTransition : MonoBehaviour
         transition.SetTrigger("Up");
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Transition();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            TransitionBack();
-        }
-        
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            Exit();
-        }
-    }
     public void Transition()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        PlayerPrefs.Save();
     }
 
     public void TransitionBack()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
+        PlayerPrefs.Save();
     }
 
     public void Exit()
     {
         StartCoroutine(ExitGame());
+        PlayerPrefs.Save();
     }
 
     IEnumerator ExitGame()
@@ -53,7 +39,7 @@ public class CurtainTransition : MonoBehaviour
         transition.SetTrigger("Down"); 
         yield return new WaitForSeconds(waitTime);
         Application.Quit();
-
+        PlayerPrefs.Save();
     }
 
     IEnumerator LoadLevel(int levelIndex)
