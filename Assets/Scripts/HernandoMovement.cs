@@ -21,14 +21,18 @@ public class HernandoMovement : MonoBehaviour
 
     private void Update()
     {
-        mx = Input.GetAxisRaw("Horizontal");
+        mx = Input.GetAxisRaw("Horizontal") * speed;
+        anim_.SetFloat("speed", Mathf.Abs(mx));
 
-        if (upgrade_.upgradePurchased[0])
+        if(mx < 0)
         {
-            speed = 8f;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        anim_.SetFloat("running", speed);
+        if (mx > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     private void FixedUpdate()

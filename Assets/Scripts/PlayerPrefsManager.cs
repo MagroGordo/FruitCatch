@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class PlayerPrefsManager : MonoBehaviour
 {
-    private void Update()
+    public void DeletePrefs()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PlayerPrefs.DeleteAll();
-            Debug.Log("Delete");
-        }
+        PlayerPrefs.DeleteAll();
     }
 }

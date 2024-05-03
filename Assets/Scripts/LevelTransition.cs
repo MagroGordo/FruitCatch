@@ -5,38 +5,45 @@ using UnityEngine.SceneManagement;
 
 public class CurtainTransition : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private Animator transition;
+    //[Header("References")]
+    //[SerializeField] private Animator transition;
 
     [Header("Attributes")]
     [SerializeField] private float waitTime = 3f;
 
     private void Start()
     {
-        transition.SetTrigger("Up");
+        //transition.SetTrigger("Up");
     }
 
-    public void Transition()
+    public void TransitionFruitCatch()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-        PlayerPrefs.Save();
+        StartCoroutine(LoadLevel(2));
     }
 
-    public void TransitionBack()
+    public void TransitionMainMenu()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
-        PlayerPrefs.Save();
+        StartCoroutine(LoadLevel(0));
     }
 
-    public void Exit()
+    public void TransitionSecondMenu()
     {
-        StartCoroutine(ExitGame());
-        PlayerPrefs.Save();
+        StartCoroutine(LoadLevel(1));
     }
 
-    IEnumerator ExitGame()
+    public void TransitionShop()
     {
-        transition.SetTrigger("Down"); 
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public void ExitGame()
+    {
+        StartCoroutine(QuitGame());
+    }
+
+    IEnumerator QuitGame()
+    {
+        //transition.SetTrigger("Down"); 
         yield return new WaitForSeconds(waitTime);
         Application.Quit();
         PlayerPrefs.Save();
@@ -44,10 +51,9 @@ public class CurtainTransition : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        transition.SetTrigger("Down");
+        //transition.SetTrigger("Down");
 
         yield return new WaitForSeconds(waitTime);
-
         SceneManager.LoadScene(levelIndex);
     }
 }
