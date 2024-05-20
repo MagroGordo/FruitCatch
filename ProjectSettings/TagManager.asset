@@ -15,6 +15,7 @@ TagManager:
   - Banana
   - Orange
   - Pineapple
+  - Paper
   layers:
   - Default
   - TransparentFX
