@@ -15,14 +15,14 @@ public class Hernando : MonoBehaviour
 
     private void Start()
     {
-        watermelonCount = PlayerPrefs.GetInt("WatermelonCollected", 0);
-        strawberryCount = PlayerPrefs.GetInt("StrawberryCollected", 0);
-        melonCount = PlayerPrefs.GetInt("MelonCollected", 0);
-        pineappleCount = PlayerPrefs.GetInt("PineappleCollected", 0);
-        orangeCount = PlayerPrefs.GetInt("OrangeCollected", 0);
-        kiwiCount = PlayerPrefs.GetInt("KiwiCollected", 0);
-        bananaCount = PlayerPrefs.GetInt("BananaCollected", 0);
-        lemonCount = PlayerPrefs.GetInt("LemonCollected", 0);
+        watermelonCount = PlayerPrefs.GetInt("WatermelonCollected", watermelonCount);
+        strawberryCount = PlayerPrefs.GetInt("StrawberryCollected", strawberryCount);
+        melonCount = PlayerPrefs.GetInt("MelonCollected", melonCount);
+        pineappleCount = PlayerPrefs.GetInt("PineappleCollected", pineappleCount);
+        orangeCount = PlayerPrefs.GetInt("OrangeCollected", orangeCount);
+        kiwiCount = PlayerPrefs.GetInt("KiwiCollected", kiwiCount);
+        bananaCount = PlayerPrefs.GetInt("BananaCollected", bananaCount);
+        lemonCount = PlayerPrefs.GetInt("LemonCollected", lemonCount);
     }
 
     private void Update()
@@ -35,14 +35,5 @@ public class Hernando : MonoBehaviour
         PlayerPrefs.SetInt("KiwiCollected", kiwiCount);
         PlayerPrefs.SetInt("BananaCollected", bananaCount);
         PlayerPrefs.SetInt("LemonCollected", lemonCount);
-
-        watermelonCount = PlayerPrefs.GetInt("WatermelonCollected", 0);
-        strawberryCount = PlayerPrefs.GetInt("StrawberryCollected", 0);
-        melonCount = PlayerPrefs.GetInt("MelonCollected", 0);
-        pineappleCount = PlayerPrefs.GetInt("PineappleCollected", 0);
-        orangeCount = PlayerPrefs.GetInt("OrangeCollected", 0);
-        kiwiCount = PlayerPrefs.GetInt("KiwiCollected", 0);
-        bananaCount = PlayerPrefs.GetInt("BananaCollected", 0);
-        lemonCount = PlayerPrefs.GetInt("LemonCollected", 0);
     }
 }   

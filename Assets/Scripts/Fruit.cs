@@ -65,13 +65,6 @@ public class Fruit : MonoBehaviour
         if (collision.gameObject.CompareTag("Barrier"))
         {
             Destroy(this.gameObject);
-
-            if (upgrade_.upgradePurchased[1])
-            {
-                float r = Random.Range(0, 2f);
-
-                if (r == 0.6f)
-                {
                     if (CompareTag("Lemon"))
                     {
                         hernando.lemonCount++;
@@ -106,43 +99,6 @@ public class Fruit : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                if (CompareTag("Lemon"))
-                {
-                    hernando.lemonCount--;
-                }
-                if (CompareTag("Strawberry"))
-                {
-                    hernando.strawberryCount--;
-                }
-                if (CompareTag("Melon"))
-                {
-                    hernando.melonCount--;
-                }
-                if (CompareTag("Watermelon"))
-                {
-                    hernando.watermelonCount--;
-                }
-                if (CompareTag("Pineapple"))
-                {
-                    hernando.pineappleCount--;
-                }
-                if (CompareTag("Kiwi"))
-                {
-                    hernando.kiwiCount--;
-                }
-                if (CompareTag("Banana"))
-                {
-                    hernando.bananaCount--;
-                }
-                if (CompareTag("Orange"))
-                {
-                    hernando.orangeCount--;
-                }
-            }
-        }
-    }
 
     public void IncreaseFallSpeed(float increaseSpeed)
     {

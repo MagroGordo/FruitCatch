@@ -7,5 +7,6 @@ public class PlayerPrefsManager : MonoBehaviour
     public void DeletePrefs()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
 }

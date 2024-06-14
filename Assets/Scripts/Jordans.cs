@@ -7,11 +7,11 @@ public class Jordans : MonoBehaviour
     [Header("References")]
     [SerializeField] private UpgradeManager upgrade_;
 
-    private int updateIndex = 1;
-    private int requiredFruits = 150;
+    private int upgradeIndex = 0;
+    private int requiredFruits = 100;
 
     public void PurchaseUpgrade()
     {
-        upgrade_.PurchaseUpgrade(updateIndex, requiredFruits);
+        upgrade_.PurchaseUpgrade(requiredFruits, upgradeIndex);
     }
 }

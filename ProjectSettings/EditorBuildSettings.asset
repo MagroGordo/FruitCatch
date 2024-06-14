@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Shop.unity
     guid: 656d4c25d16ff4e409d9d95c34bd9625
+  - enabled: 1
+    path: Assets/Resources/Scenes/Barn.unity
+    guid: 5f85588c94d9a9b498cb8b43d3f78083
   m_configObjects: {}
