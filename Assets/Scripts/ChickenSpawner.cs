@@ -98,6 +98,6 @@ public class UIRectTransformSpawner : MonoBehaviour
     void UpdateCostText()
     {
         // Update the TextMeshProUGUI text with the current spawn cost
-        costText.text = "Cost to Spawn: " + spawnCost.ToString();
+        costText.text = spawnCost.ToString();
     }
 }

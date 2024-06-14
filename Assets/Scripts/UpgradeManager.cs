@@ -31,15 +31,10 @@ public class UpgradeManager : MonoBehaviour
             lemon >= requiredFruits)
         {
             // Subtract fruits from player's PlayerPrefs values
-            kiwi -= requiredFruits;
-            strawberry -= requiredFruits;
-            orange -= requiredFruits;
-            lemon -= requiredFruits;
-
-            PlayerPrefs.SetInt("KiwiCollected", kiwi);
-            PlayerPrefs.SetInt("StrawberryCollected", strawberry);
-            PlayerPrefs.SetInt("OrangeCollected", orange);
-            PlayerPrefs.SetInt("LemonCollected", lemon);
+            PlayerPrefs.SetInt("LemonCollected", PlayerPrefs.GetInt("LemonCollected") - requiredFruits);
+            PlayerPrefs.SetInt("OrangeCollected", PlayerPrefs.GetInt("OrangeCollected") - requiredFruits);
+            PlayerPrefs.SetInt("StrawberryCollected", PlayerPrefs.GetInt("StrawberryCollected") - requiredFruits);
+            PlayerPrefs.SetInt("KiwiCollected", PlayerPrefs.GetInt("KiwiCollected") - requiredFruits);
             PlayerPrefs.Save();
 
             // Set upgrade as purchased
@@ -63,10 +58,6 @@ public class UpgradeManager : MonoBehaviour
         // Save upgrade purchased status
         PlayerPrefs.SetInt(upgradePurchasedKey, 1);
         PlayerPrefs.Save();
-
-        // Optionally, you can set an internal boolean to track this
-        // This is useful if you need to query the status elsewhere in the code
-        // upgradePurchased = true;
     }
 
     private void LoadUpgradeStatus()

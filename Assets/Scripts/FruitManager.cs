@@ -13,14 +13,14 @@ public class FruitManager : MonoBehaviour
     }
     private void Update()
     {
-        PlayerPrefs.SetInt("LemonCollected", 0);
-        PlayerPrefs.SetInt("BananaCollected", 0);
-        PlayerPrefs.SetInt("OrangeCollected", 0);
-        PlayerPrefs.SetInt("StrawberryCollected", 0);
-        PlayerPrefs.SetInt("WatermelonCollected", 0);
-        PlayerPrefs.SetInt("MelonCollected", 0);
-        PlayerPrefs.SetInt("KiwiCollected", 0);
-        PlayerPrefs.SetInt("PineappleCollected", 0);
+        PlayerPrefs.SetInt("LemonCollected", hernando.lemonCount);
+        PlayerPrefs.SetInt("BananaCollected", hernando.bananaCount);
+        PlayerPrefs.SetInt("OrangeCollected", hernando.orangeCount);
+        PlayerPrefs.SetInt("StrawberryCollected", hernando.strawberryCount);
+        PlayerPrefs.SetInt("WatermelonCollected", hernando.watermelonCount);
+        PlayerPrefs.SetInt("MelonCollected", hernando.melonCount);
+        PlayerPrefs.SetInt("KiwiCollected", hernando.kiwiCount);
+        PlayerPrefs.SetInt("PineappleCollected", hernando.pineappleCount);
         PlayerPrefs.Save();
     }
 }

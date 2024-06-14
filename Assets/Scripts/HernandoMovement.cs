@@ -16,6 +16,13 @@ public class HernandoMovement : MonoBehaviour
     {
         anim_ = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        int upgradePurchasedValue = PlayerPrefs.GetInt("JordansPurchased", 0);
+
+        if(upgradePurchasedValue == 1)
+        {
+            speed = 10f;
+        }
     }
 
     private void Update()
