@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.Arm;
 
 public class FruitManager : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class FruitManager : MonoBehaviour
     }
     private void Update()
     {
-        PlayerPrefs.SetInt("KiwiCollected", hernando.kiwiCount);
-        PlayerPrefs.SetInt("PineappleCollected", hernando.pineappleCount);
-        PlayerPrefs.SetInt("BananaCollected", hernando.bananaCount);
-        PlayerPrefs.SetInt("LemonCollected", hernando.lemonCount);
-        PlayerPrefs.SetInt("MelonCollected", hernando.melonCount);
-        PlayerPrefs.SetInt("StrawberryCollected", hernando.strawberryCount);
+        PlayerPrefs.SetInt("LemonCollected", 0);
+        PlayerPrefs.SetInt("BananaCollected", 0);
+        PlayerPrefs.SetInt("OrangeCollected", 0);
+        PlayerPrefs.SetInt("StrawberryCollected", 0);
+        PlayerPrefs.SetInt("WatermelonCollected", 0);
+        PlayerPrefs.SetInt("MelonCollected", 0);
+        PlayerPrefs.SetInt("KiwiCollected", 0);
+        PlayerPrefs.SetInt("PineappleCollected", 0);
         PlayerPrefs.Save();
     }
 }

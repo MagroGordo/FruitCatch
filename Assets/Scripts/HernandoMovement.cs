@@ -16,7 +16,6 @@ public class HernandoMovement : MonoBehaviour
     {
         anim_ = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        upgrade_ = FindObjectOfType<UpgradeManager>();
     }
 
     private void Update()
