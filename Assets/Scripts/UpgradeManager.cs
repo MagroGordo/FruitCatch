@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static Unity.Burst.Intrinsics.Arm;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -9,68 +12,93 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI talk;
 
     private string upgradePurchasedKey = "JordansPurchased";
-    private int requiredFruits = 50; // Adjust as per your game design
+    private int requiredFruits = 10;
+
+    public bool upgradePurchased;
+
+    public Image image;
+    public float displayTime = 2.0f;
 
     void Start()
     {
         LoadUpgradeStatus();
+
         talk.text = "Ciao Hernandito! What can I help you with today?";
+        ShowImage();
     }
 
-    public void PurchaseUpgrade()
+    public void PurchaseUpgrade(int upgradeIndex)
     {
-        int strawberry = PlayerPrefs.GetInt("StrawberryCollected", 0);
-        int orange = PlayerPrefs.GetInt("OrangeCollected", 0);
-        int kiwi = PlayerPrefs.GetInt("KiwiCollected", 0);
-        int lemon = PlayerPrefs.GetInt("LemonCollected", 0);
+        int lemon = PlayerPrefs.GetInt("LemonCollected");
+        int orange = PlayerPrefs.GetInt("OrangeCollected");
+        int strawberry = PlayerPrefs.GetInt("StrawberryCollected");
+        int kiwi = PlayerPrefs.GetInt("KiwiCollected");
 
-        // Check if player has enough fruits to purchase upgrade
-        if (kiwi >= requiredFruits &&
-            strawberry >= requiredFruits &&
-            orange >= requiredFruits &&
-            lemon >= requiredFruits)
+        Debug.Log("Current resources - Strawberry: " + strawberry + ", Orange: " + orange + ", Kiwi: " + kiwi + ", Lemon: " + lemon);
+
+        if (upgradeIndex == 0)
         {
-            // Subtract fruits from player's PlayerPrefs values
-            PlayerPrefs.SetInt("LemonCollected", PlayerPrefs.GetInt("LemonCollected") - requiredFruits);
-            PlayerPrefs.SetInt("OrangeCollected", PlayerPrefs.GetInt("OrangeCollected") - requiredFruits);
-            PlayerPrefs.SetInt("StrawberryCollected", PlayerPrefs.GetInt("StrawberryCollected") - requiredFruits);
-            PlayerPrefs.SetInt("KiwiCollected", PlayerPrefs.GetInt("KiwiCollected") - requiredFruits);
-            PlayerPrefs.Save();
+            if (kiwi >= requiredFruits &&
+               strawberry >= requiredFruits &&
+               orange >= requiredFruits &&
+               lemon >= requiredFruits)
+            {
+                jordans.SetActive(false);
+                upgradePurchased = true;
 
-            // Set upgrade as purchased
-            SaveUpgradeStatus();
+                orange -= requiredFruits;
+                kiwi -= requiredFruits;
+                strawberry -= requiredFruits;
+                lemon -= requiredFruits;
 
-            // Hide the upgrade object
-            jordans.SetActive(false);
+                PlayerPrefs.SetInt("LemonCollected", lemon);
+                PlayerPrefs.SetInt("OrangeCollected", orange);
+                PlayerPrefs.SetInt("StrawberryCollected", strawberry);
+                PlayerPrefs.SetInt("KiwiCollected", kiwi);
 
-            // Update UI or feedback to player
-            talk.text = "Grazzie mille Hernandito! Come again!";
-        }
-        else
-        {
-            // Inform player they don't have enough fruits
-            talk.text = "Qué cosa Hernandito! Looks like you don't have enough fruits. Be sure to bring me 50 oranges, 50 kiwis, 50 strawberries and 50 lemons for that pair of jordans";
+                PlayerPrefs.Save();
+
+                SaveUpgradeStatus();
+
+                talk.text = "Grazie mille Hernandito! Come again!";
+                ShowImage();
+            }
+            else
+            {
+                talk.text = "Qué cosa Hernandito! Looks like you don't have enough fruits. Be sure to bring me " + requiredFruits + " oranges, " + requiredFruits + " kiwis, " + requiredFruits + " strawberries, and " + requiredFruits + " lemons for that pair of jordans";
+                ShowImage();
+            }
         }
     }
 
     private void SaveUpgradeStatus()
     {
-        // Save upgrade purchased status
-        PlayerPrefs.SetInt(upgradePurchasedKey, 1);
+        PlayerPrefs.SetInt(upgradePurchasedKey, upgradePurchased ? 1 : 0);
         PlayerPrefs.Save();
     }
 
     private void LoadUpgradeStatus()
     {
-        // Load upgrade purchased status
-        int upgradePurchasedValue = PlayerPrefs.GetInt(upgradePurchasedKey, 0);
-        if (upgradePurchasedValue == 1)
+        upgradePurchased = PlayerPrefs.GetInt(upgradePurchasedKey, 0) == 1;
+
+        if (upgradePurchased)
         {
-            jordans.SetActive(false); // Hide the upgrade object
+            jordans.SetActive(false);
         }
         else
         {
-            jordans.SetActive(true); // Show the upgrade object
+            jordans.SetActive(true);
         }
+    }
+
+    public void ShowImage()
+    {
+        image.gameObject.SetActive(true);
+        Invoke("HideImage", displayTime);
+    }
+
+    void HideImage()
+    {
+        image.gameObject.SetActive(false);
     }
 }

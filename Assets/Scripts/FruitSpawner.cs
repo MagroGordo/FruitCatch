@@ -12,11 +12,14 @@ public class FruitSpawner : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
     private float spawnSpeed;
+    private AudioSource _audio;
     
     public int totalSpawned = 0;
 
     private void Start()
     {
+        _audio = GetComponent<AudioSource>();
+
         spawnSpeed = 3f;
         StartCoroutine(SpawnFruit());
     }
