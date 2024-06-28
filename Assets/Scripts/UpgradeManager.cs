@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using static Unity.Burst.Intrinsics.Arm;
 
 public class UpgradeManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject jordans;
+    [SerializeField] private GameObject oinky;
     [SerializeField] private TextMeshProUGUI talk;
 
-    private string upgradePurchasedKey = "JordansPurchased";
-    private int requiredFruits = 10;
+    private string jordansPurchasedKey = "JordansPurchased";
+    private string oinkyPurchasedKey = "OinkyPurchased";
+    private int requiredFruits;
 
-    public bool upgradePurchased;
+    public bool jordansPurchased;
+    public bool oinkyPurchased;
 
     public Image image;
     public float displayTime = 2.0f;
 
+    private AudioSource sound;
+
     void Start()
     {
+        sound = GetComponent<AudioSource>();
+
         LoadUpgradeStatus();
 
         talk.text = "Ciao Hernandito! What can I help you with today?";
@@ -34,17 +40,23 @@ public class UpgradeManager : MonoBehaviour
         int strawberry = PlayerPrefs.GetInt("StrawberryCollected");
         int kiwi = PlayerPrefs.GetInt("KiwiCollected");
 
-        Debug.Log("Current resources - Strawberry: " + strawberry + ", Orange: " + orange + ", Kiwi: " + kiwi + ", Lemon: " + lemon);
+        int banana = PlayerPrefs.GetInt("BananaCollected");
+        int watermelon = PlayerPrefs.GetInt("WatermelonCollected");
+        int melon = PlayerPrefs.GetInt("MelonCollected");
+        int pineapple = PlayerPrefs.GetInt("PineappleCollected");
 
         if (upgradeIndex == 0)
         {
+            requiredFruits = 10;
+
             if (kiwi >= requiredFruits &&
-               strawberry >= requiredFruits &&
-               orange >= requiredFruits &&
-               lemon >= requiredFruits)
+                strawberry >= requiredFruits &&
+                orange >= requiredFruits &&
+                lemon >= requiredFruits)
             {
+                sound.Play();
                 jordans.SetActive(false);
-                upgradePurchased = true;
+                jordansPurchased = true;
 
                 orange -= requiredFruits;
                 kiwi -= requiredFruits;
@@ -69,26 +81,58 @@ public class UpgradeManager : MonoBehaviour
                 ShowImage();
             }
         }
+        else if (upgradeIndex == 1)
+        {
+            requiredFruits = 20;
+
+            if (banana >= requiredFruits &&
+                watermelon >= requiredFruits &&
+                melon >= requiredFruits &&
+                pineapple >= requiredFruits)
+            {
+                sound.Play();
+                oinky.SetActive(false);
+                oinkyPurchased = true;
+
+                banana -= requiredFruits;
+                watermelon -= requiredFruits;
+                melon -= requiredFruits;
+                pineapple -= requiredFruits;
+
+                PlayerPrefs.SetInt("BananaCollected", banana);
+                PlayerPrefs.SetInt("WatermelonCollected", watermelon);
+                PlayerPrefs.SetInt("MelonCollected", melon);
+                PlayerPrefs.SetInt("PineappleCollected", pineapple);
+
+                PlayerPrefs.Save();
+
+                SaveUpgradeStatus();
+
+                talk.text = "Grazie mille Hernandito! Come again!";
+                ShowImage();
+            }
+            else
+            {
+                talk.text = "Qué cosa Hernandito! Looks like you don't have enough fruits. Be sure to bring me " + requiredFruits + " bananas, " + requiredFruits + " watermelons, " + requiredFruits + " melons, and " + requiredFruits + " pineapples for that oinky upgrade";
+                ShowImage();
+            }
+        }
     }
 
     private void SaveUpgradeStatus()
     {
-        PlayerPrefs.SetInt(upgradePurchasedKey, upgradePurchased ? 1 : 0);
+        PlayerPrefs.SetInt(jordansPurchasedKey, jordansPurchased ? 1 : 0);
+        PlayerPrefs.SetInt(oinkyPurchasedKey, oinkyPurchased ? 1 : 0);
         PlayerPrefs.Save();
     }
 
     private void LoadUpgradeStatus()
     {
-        upgradePurchased = PlayerPrefs.GetInt(upgradePurchasedKey, 0) == 1;
+        jordansPurchased = PlayerPrefs.GetInt(jordansPurchasedKey, 0) == 1;
+        oinkyPurchased = PlayerPrefs.GetInt(oinkyPurchasedKey, 0) == 1;
 
-        if (upgradePurchased)
-        {
-            jordans.SetActive(false);
-        }
-        else
-        {
-            jordans.SetActive(true);
-        }
+        jordans.SetActive(!jordansPurchased);
+        oinky.SetActive(!oinkyPurchased);
     }
 
     public void ShowImage()

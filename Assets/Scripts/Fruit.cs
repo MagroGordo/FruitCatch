@@ -98,7 +98,44 @@ public class Fruit : MonoBehaviour
             {
                 hernando.orangeCount--;
             }
+        }
 
+        if (collision.gameObject.CompareTag("Oinky"))
+        {
+            Destroy(this.gameObject);
+
+            if (CompareTag("Lemon"))
+            {
+                hernando.lemonCount++;
+            }
+            if (CompareTag("Strawberry"))
+            {
+                hernando.strawberryCount++;
+            }
+            if (CompareTag("Melon"))
+            {
+                hernando.melonCount++;
+            }
+            if (CompareTag("Watermelon"))
+            {
+                hernando.watermelonCount++;
+            }
+            if (CompareTag("Pineapple"))
+            {
+                hernando.pineappleCount++;
+            }
+            if (CompareTag("Kiwi"))
+            {
+                hernando.kiwiCount++;
+            }
+            if (CompareTag("Banana"))
+            {
+                hernando.bananaCount++;
+            }
+            if (CompareTag("Orange"))
+            {
+                hernando.orangeCount++;
+            }
         }
     }
 

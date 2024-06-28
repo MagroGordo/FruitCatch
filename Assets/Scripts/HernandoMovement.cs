@@ -9,6 +9,7 @@ public class HernandoMovement : MonoBehaviour
     private Animator anim_;
     private Rigidbody2D rb;
     private UpgradeManager upgrade_;
+    private AudioSource sound;
 
     private float mx;
 
@@ -16,10 +17,11 @@ public class HernandoMovement : MonoBehaviour
     {
         anim_ = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sound = GetComponent<AudioSource>();
 
         int upgradePurchasedValue = PlayerPrefs.GetInt("JordansPurchased", 0);
 
-        if(upgradePurchasedValue == 1)
+        if (upgradePurchasedValue == 1)
         {
             speed = 10f;
         }
@@ -30,7 +32,7 @@ public class HernandoMovement : MonoBehaviour
         mx = Input.GetAxisRaw("Horizontal") * speed;
         anim_.SetFloat("speed", Mathf.Abs(mx));
 
-        if(mx < 0)
+        if (mx < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -44,5 +46,13 @@ public class HernandoMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(mx, 0f).normalized * speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Fruit"))
+        {
+            sound.Play();
+        }
     }
 }
