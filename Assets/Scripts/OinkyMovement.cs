@@ -32,7 +32,15 @@ public class OinkyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Fruit"))
+        if (collision.gameObject.CompareTag("Lemon") ||
+            collision.gameObject.CompareTag("Kiwi") ||
+            collision.gameObject.CompareTag("Strawberry") ||
+            collision.gameObject.CompareTag("Melon") ||
+            collision.gameObject.CompareTag("Watermelon") ||
+            collision.gameObject.CompareTag("Banana") ||
+            collision.gameObject.CompareTag("Orange") ||
+            collision.gameObject.CompareTag("Pineapple")
+           )
         {
             sound.Play();
         }
